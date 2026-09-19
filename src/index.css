@@ -1,0 +1,19 @@
+@import "tailwindcss";
+
+@theme {
+  --font-sans: 'Hanken Grotesk', -apple-system, BlinkMacSystemFont, sans-serif;
+  --font-grotesk: 'Hanken Grotesk', -apple-system, BlinkMacSystemFont, sans-serif;
+  --font-serif: 'Newsreader', Georgia, serif;
+  --color-ivory: #fbf9f4;
+  --color-ivory-subtle: #f4f2ec;
+  --color-ivory-dim: #eae7df;
+  --color-ink: #0c0e12;
+  --color-cyan: #00d2ff;
+}
+
+body {
+  font-family: var(--font-sans);
+  background-color: #fbf9f4;
+  color: #1b1c19;
+}
+
