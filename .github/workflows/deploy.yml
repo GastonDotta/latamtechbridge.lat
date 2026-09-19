@@ -19,6 +19,8 @@ jobs:
           node-version: 22
       - run: npm install --legacy-peer-deps
       - run: npm run build
+        env:
+          VITE_AIRTABLE_TOKEN: ${{ secrets.VITE_AIRTABLE_TOKEN }}
       - uses: actions/upload-pages-artifact@v4
         with:
           path: dist
