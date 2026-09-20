@@ -2,7 +2,7 @@ import { CohortPillar, RoadmapPhase, EcosystemPartner } from '../types';
 
 export const IMAGES = {
   // Plate I: Founder Workspace, Midtown Manhattan view with coffee & table
-  plate1: 'https://images.unsplash.com/photo-1522071820081-009f0129c71c?auto=format&fit=crop&w=1600&q=80',
+  plate1: 'https://imgur.com/QgSpXww',
   // Plate II: Commercial Strategy Session, Manhattan conference room (NeueHouse style)
   plate2: 'https://imgur.com/a/UJeTwb0',
   // Archival Plate II: Boardroom meeting table & skyline windows
