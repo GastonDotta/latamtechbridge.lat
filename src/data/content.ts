@@ -4,7 +4,7 @@ export const IMAGES = {
   // Plate I: Founder Workspace, Midtown Manhattan view with coffee & table
   plate1: 'https://images.unsplash.com/photo-1522071820081-009f0129c71c?auto=format&fit=crop&w=1600&q=80',
   // Plate II: Commercial Strategy Session, Manhattan conference room (NeueHouse style)
-  plate2: 'https://images.unsplash.com/photo-1517245386807-bb43f82c33c4?auto=format&fit=crop&w=1920&q=80',
+  plate2: 'https://imgur.com/a/UJeTwb0',
   // Archival Plate II: Boardroom meeting table & skyline windows
   archivalPlate2: 'https://images.unsplash.com/photo-1556761175-5973dc0f32e7?auto=format&fit=crop&w=1400&q=80',
   // CTA Banner: Midtown Manhattan 5th Ave street at dusk/night
