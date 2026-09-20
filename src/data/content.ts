@@ -6,7 +6,7 @@ export const IMAGES = {
   // Plate II: Commercial Strategy Session, Manhattan conference room (NeueHouse style)
   plate2: 'https://i.imgur.com/lrxjn0N.jpg',
   // Archival Plate II: Boardroom meeting table & skyline windows
-  archivalPlate2: 'https://images.unsplash.com/photo-1556761175-5973dc0f32e7?auto=format&fit=crop&w=1400&q=80',
+  archivalPlate2: 'https://i.imgur.com/dRsBOGx.jpg',
   // CTA Banner: Midtown Manhattan 5th Ave street at dusk/night
   ctaBg: 'https://images.unsplash.com/photo-1534430480872-3498386e7856?auto=format&fit=crop&w=1920&q=80',
 };
