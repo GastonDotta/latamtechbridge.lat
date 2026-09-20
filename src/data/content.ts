@@ -2,9 +2,9 @@ import { CohortPillar, RoadmapPhase, EcosystemPartner } from '../types';
 
 export const IMAGES = {
   // Plate I: Founder Workspace, Midtown Manhattan view with coffee & table
-  plate1: 'https://imgur.com/QgSpXww',
+  plate1: 'https://i.imgur.com/QgSpXww.jpg',
   // Plate II: Commercial Strategy Session, Manhattan conference room (NeueHouse style)
-  plate2: 'https://imgur.com/a/UJeTwb0',
+  plate2: 'https://i.imgur.com/UJeTwb0.jpg',
   // Archival Plate II: Boardroom meeting table & skyline windows
   archivalPlate2: 'https://images.unsplash.com/photo-1556761175-5973dc0f32e7?auto=format&fit=crop&w=1400&q=80',
   // CTA Banner: Midtown Manhattan 5th Ave street at dusk/night
