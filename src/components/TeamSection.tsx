@@ -39,30 +39,30 @@ export const TeamSection: React.FC = () => {
           </div>
         </div>
 
-        {/* Grid de Miembros del Equipo */}
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
+        {/* Grid de Miembros del Equipo (Centrado para 2 personas) */}
+        <div className="grid grid-cols-1 sm:grid-cols-2 gap-8 lg:gap-12 max-w-3xl mx-auto w-full">
           {TEAM.map((member) => (
-            <div key={member.number} className="flex flex-col space-y-4 group">
+            <div key={member.number || member.name} className="flex flex-col space-y-4 group">
               {/* Foto del Miembro */}
               <div className="relative aspect-[4/5] bg-[#f4f2ec] border border-[#0c0e12]/15 overflow-hidden">
                 <img
-                  src={member.image || "https://imgur.com/y1WHwAj.png"}
+                  src={member.image}
                   alt={member.name}
                   className="w-full h-full object-cover grayscale contrast-105 group-hover:grayscale-0 group-hover:scale-105 transition-all duration-500 ease-out"
                 />
                 <div className="absolute inset-0 border border-black/5 pointer-events-none" />
               </div>
 
-              {/* Información del Miembro (Nombre, Rol, Ubicación y LinkedIn) */}
+              {/* Información del Miembro */}
               <div className="space-y-2">
                 <div className="flex items-center justify-between">
                   <span className="text-[10px] font-semibold tracking-[0.16em] uppercase text-[#00677f]">
                     {member.number} · {member.role}
                   </span>
 
-                  {/* Logo de LinkedIn con Link Vacío */}
+                  {/* LinkedIn dinámico por miembro */}
                   <a
-                    href=""
+                    href={member.linkedin || ""}
                     target="_blank"
                     rel="noopener noreferrer"
                     className="text-[#0c0e12]/60 hover:text-[#00677f] transition-colors p-1"
