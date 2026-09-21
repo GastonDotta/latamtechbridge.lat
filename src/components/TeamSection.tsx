@@ -6,6 +6,7 @@ export const TeamSection: React.FC = () => {
     <section id="team" className="w-full bg-[#fbf9f4] border-b border-[#0c0e12]/15 py-16 sm:py-24">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 space-y-16">
 
+        {/* Header */}
         <div>
           <div className="flex items-center gap-2 mb-4">
             <span className="w-2.5 h-2.5 bg-[#00d2ff] shrink-0" />
@@ -22,10 +23,34 @@ export const TeamSection: React.FC = () => {
         </div>
 
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-16 items-start">
-          <div className="lg:col-span-5 space-y-6">
+          
+          {/* Columna Izquierda: Texto + Galería Editorial */}
+          <div className="lg:col-span-5 space-y-8">
             <p className="font-serif text-base sm:text-lg text-[#23262b] leading-[1.7]">
               Southern Cone Tech Bridge NYC is run by operators who have built companies in the region and sat in Midtown rooms. The introductions hold because someone is already in New York — and remains accountable after the residency ends.
             </p>
+
+            {/* Módulo de Imágenes Editoriales */}
+            <div className="grid grid-cols-2 gap-4">
+              <div className="group relative aspect-[4/5] bg-[#f4f2ec] border border-[#0c0e12]/15 overflow-hidden">
+                <img
+                  src="https://imgur.com/y1WHwAj.png"
+                  alt="Operating presence 1"
+                  className="w-full h-full object-cover grayscale contrast-105 group-hover:grayscale-0 group-hover:scale-105 transition-all duration-500 ease-out"
+                />
+                <div className="absolute inset-0 border border-black/5 pointer-events-none" />
+              </div>
+
+              <div className="group relative aspect-[4/5] bg-[#f4f2ec] border border-[#0c0e12]/15 overflow-hidden">
+                <img
+                  src="https://imgur.com/zOnq83z.png"
+                  alt="Operating presence 2"
+                  className="w-full h-full object-cover grayscale contrast-105 group-hover:grayscale-0 group-hover:scale-105 transition-all duration-500 ease-out"
+                />
+                <div className="absolute inset-0 border border-black/5 pointer-events-none" />
+              </div>
+            </div>
+
             <div className="pt-4 border-t border-[#0c0e12]/15">
               <span className="text-[10px] font-semibold tracking-[0.16em] uppercase text-[#76777b] block mb-1">
                 OPERATING CORRIDOR
@@ -36,6 +61,7 @@ export const TeamSection: React.FC = () => {
             </div>
           </div>
 
+          {/* Columna Derecha: Lista de Miembros */}
           <div className="lg:col-span-7 divide-y divide-[#0c0e12]/15 border-t border-b border-[#0c0e12]/15">
             {TEAM.map((member) => (
               <div key={member.number} className="py-8 first:pt-5 last:pb-5 space-y-4">
@@ -61,6 +87,7 @@ export const TeamSection: React.FC = () => {
           </div>
         </div>
 
+        {/* Mandatos */}
         <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
           {TEAM_MANDATES.map((mandate) => (
             <div
