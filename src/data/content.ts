@@ -100,7 +100,7 @@ export const TEAM = [
   },
   {
     number: "02",
-    name: "Nombre del Miembro 2",
+    name: "Tomas Esposito",
     role: "Co-Founder / Argentina",
     location: "Buenos Aires · New York",
     image: "https://i.imgur.com/zOnq83z.png", // Link directo a su foto
