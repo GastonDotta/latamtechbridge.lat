@@ -94,7 +94,7 @@ export const TEAM = [
     number: "01",
     name: "Gastón Dotta",
     role: "Co-Founder / Uruguay", // O el rol que corresponda
-    location: "Montevideo · New York",
+    location: "Montevideo · Santiago de Chile · New York",
     image: "https://i.imgur.com/y1WHwAj.png", // Link directo a su foto
     linkedin: "https://www.linkedin.com/in/gastondotta/",
   },
