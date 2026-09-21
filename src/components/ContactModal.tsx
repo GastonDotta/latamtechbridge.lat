@@ -1,14 +1,11 @@
 import React, { useState } from 'react';
 import { X, CheckCircle2, ArrowRight, Loader2 } from 'lucide-react';
+import { submitAirtableRecord } from '../lib/airtable';
 
 interface ContactModalProps {
   isOpen: boolean;
   onClose: () => void;
 }
-
-const AIRTABLE_TOKEN = import.meta.env.VITE_AIRTABLE_TOKEN;
-const AIRTABLE_BASE = 'applHvBnlfub2djo3';
-const AIRTABLE_TABLE = 'tblhMN4kCuo7rNHdD';
 
 export const ContactModal: React.FC<ContactModalProps> = ({ isOpen, onClose }) => {
   const [name, setName] = useState('');
@@ -23,26 +20,14 @@ export const ContactModal: React.FC<ContactModalProps> = ({ isOpen, onClose }) =
     setStatus('sending');
 
     try {
-      const res = await fetch(`https://api.airtable.com/v0/${AIRTABLE_BASE}/${AIRTABLE_TABLE}`, {
-        method: 'POST',
-        headers: {
-          'Authorization': `Bearer ${AIRTABLE_TOKEN}`,
-          'Content-Type': 'application/json',
-        },
-        body: JSON.stringify({
-          records: [{
-            fields: {
-              'Founder Name': name,
-              'Founder Email': email,
-              'US Rationale': `[CONTACT REQUEST] ${notes}`,
-              'Status': 'Received',
-              'Company Name': '[Contact inquiry]',
-            }
-          }]
-        }),
+      await submitAirtableRecord({
+        'Company Name': '[Contact inquiry]',
+        'Oneliner': 'Contact request',
+        'Founder Name': name,
+        'Founder E-mail': email,
+        'Why': notes ? `[CONTACT REQUEST] ${notes}` : '[CONTACT REQUEST]',
+        'Status': 'Received',
       });
-
-      if (!res.ok) throw new Error('Failed to submit');
       setStatus('success');
     } catch {
       setStatus('error');

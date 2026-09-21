@@ -18,10 +18,11 @@ export const Navbar: React.FC<NavbarProps> = ({ onOpenApply }) => {
           </span>
         </a>
 
-        <nav className="hidden md:flex items-center space-x-8">
+        <nav className="hidden md:flex items-center space-x-6 lg:space-x-8">
           <a href="#program" className="text-xs font-semibold tracking-[0.14em] text-[#45474b] hover:text-[#0c0e12] transition-colors uppercase">PROGRAM</a>
           <a href="#experience" className="text-xs font-semibold tracking-[0.14em] text-[#45474b] hover:text-[#0c0e12] transition-colors uppercase">EXPERIENCE</a>
           <a href="#network" className="text-xs font-semibold tracking-[0.14em] text-[#45474b] hover:text-[#0c0e12] transition-colors uppercase">NETWORK</a>
+          <a href="#team" className="text-xs font-semibold tracking-[0.14em] text-[#45474b] hover:text-[#0c0e12] transition-colors uppercase">TEAM</a>
           <a href="#founders" className="text-xs font-semibold tracking-[0.14em] text-[#45474b] hover:text-[#0c0e12] transition-colors uppercase">FOUNDERS</a>
         </nav>
 
@@ -51,6 +52,7 @@ export const Navbar: React.FC<NavbarProps> = ({ onOpenApply }) => {
           <a href="#program" onClick={() => setIsMobileMenuOpen(false)} className="block py-2 text-xs font-semibold tracking-[0.14em] text-[#45474b] uppercase">PROGRAM</a>
           <a href="#experience" onClick={() => setIsMobileMenuOpen(false)} className="block py-2 text-xs font-semibold tracking-[0.14em] text-[#45474b] uppercase">EXPERIENCE</a>
           <a href="#network" onClick={() => setIsMobileMenuOpen(false)} className="block py-2 text-xs font-semibold tracking-[0.14em] text-[#45474b] uppercase">NETWORK</a>
+          <a href="#team" onClick={() => setIsMobileMenuOpen(false)} className="block py-2 text-xs font-semibold tracking-[0.14em] text-[#45474b] uppercase">TEAM</a>
           <a href="#founders" onClick={() => setIsMobileMenuOpen(false)} className="block py-2 text-xs font-semibold tracking-[0.14em] text-[#45474b] uppercase">FOUNDERS</a>
           <div className="pt-2">
             <button

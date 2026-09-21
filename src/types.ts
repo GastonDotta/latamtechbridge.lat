@@ -19,6 +19,20 @@ export interface EcosystemPartner {
   description: string;
 }
 
+export interface TeamMember {
+  number: string;
+  role: string;
+  name: string;
+  location: string;
+  description: string;
+}
+
+export interface TeamMandate {
+  number: string;
+  title: string;
+  description: string;
+}
+
 export interface ApplicationFormData {
   companyName: string;
   founderName: string;

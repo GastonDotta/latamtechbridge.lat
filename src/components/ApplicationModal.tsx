@@ -1,32 +1,37 @@
 import React, { useState } from 'react';
 import { X, CheckCircle2, ArrowRight, Loader2 } from 'lucide-react';
+import { submitAirtableRecord, toAirtableDate } from '../lib/airtable';
 
 interface ApplicationModalProps {
   isOpen: boolean;
   onClose: () => void;
 }
 
-const AIRTABLE_TOKEN = import.meta.env.VITE_AIRTABLE_TOKEN;
-const AIRTABLE_BASE = 'applHvBnlfub2djo3';
-const AIRTABLE_TABLE = 'tblhMN4kCuo7rNHdD';
+const INITIAL_FORM = {
+  companyName: '',
+  oneliner: '',
+  founderName: '',
+  founderEmail: '',
+  foundersLinkedin: '',
+  founderBio: '',
+  hasCofounders: 'No',
+  cofounderName: '',
+  cofounderLinkedin: '',
+  cofounderEmail: '',
+  cofoundersBio: '',
+  companyLinkedin: '',
+  website: '',
+  country: 'Uruguay',
+  companyCreation: '',
+  mrr: '',
+  tractionStage: 'Pre-revenue with users',
+  companyUSA: 'No',
+  linkToDeck: '',
+  why: '',
+};
 
 export const ApplicationModal: React.FC<ApplicationModalProps> = ({ isOpen, onClose }) => {
-  const [formData, setFormData] = useState({
-    companyName: '',
-    oneliner: '',
-    founderName: '',
-    founderEmail: '',
-    foundersLinkedin: '',
-    companyLinkedin: '',
-    website: '',
-    country: 'Uruguay',
-    companyCreation: '',
-    mrr: '',
-    tractionStage: 'Pre-revenue with users',
-    companyUSA: 'No',
-    linkToDeck: '',
-    why: '',
-  });
+  const [formData, setFormData] = useState(INITIAL_FORM);
   const [status, setStatus] = useState<'idle' | 'sending' | 'success' | 'error'>('idle');
 
   if (!isOpen) return null;
@@ -36,37 +41,33 @@ export const ApplicationModal: React.FC<ApplicationModalProps> = ({ isOpen, onCl
     setStatus('sending');
 
     try {
-      const fields: Record<string, unknown> = {
+      await submitAirtableRecord({
         'Company Name': formData.companyName,
         'Oneliner': formData.oneliner,
         'Founder Name': formData.founderName,
         'Founder E-mail': formData.founderEmail,
         'Founders Linkedin': formData.foundersLinkedin,
+        'Founder Bio': formData.founderBio,
+        'Co-founders': formData.hasCofounders,
+        ...(formData.hasCofounders === 'Yes'
+          ? {
+              'Co-founder Name': formData.cofounderName,
+              'Co-founder Linkedin': formData.cofounderLinkedin,
+              'Co-founder Email': formData.cofounderEmail,
+              'Co-founders Bio': formData.cofoundersBio,
+            }
+          : {}),
         'Company Linkedin': formData.companyLinkedin,
         'Website': formData.website,
         'Country': formData.country,
-        'Company Creation Date': formData.companyCreation,
+        'Company Creation Date': toAirtableDate(formData.companyCreation),
         'Traction Stage': formData.tractionStage,
         'Company USA': formData.companyUSA,
         'Link to deck': formData.linkToDeck,
         'Why': formData.why,
         'Status': 'Received',
-      };
-
-      if (formData.mrr) {
-        fields['MRR'] = Number(formData.mrr);
-      }
-
-      const res = await fetch(`https://api.airtable.com/v0/${AIRTABLE_BASE}/${AIRTABLE_TABLE}`, {
-        method: 'POST',
-        headers: {
-          'Authorization': `Bearer ${AIRTABLE_TOKEN}`,
-          'Content-Type': 'application/json',
-        },
-        body: JSON.stringify({ records: [{ fields }] }),
+        ...(formData.mrr ? { MRR: Number(formData.mrr) } : {}),
       });
-
-      if (!res.ok) throw new Error('Failed to submit');
       setStatus('success');
     } catch {
       setStatus('error');
@@ -75,12 +76,7 @@ export const ApplicationModal: React.FC<ApplicationModalProps> = ({ isOpen, onCl
 
   const handleReset = () => {
     setStatus('idle');
-    setFormData({
-      companyName: '', oneliner: '', founderName: '', founderEmail: '',
-      foundersLinkedin: '', companyLinkedin: '', website: '', country: 'Uruguay',
-      companyCreation: '', mrr: '', tractionStage: 'Pre-revenue with users',
-      companyUSA: 'No', linkToDeck: '', why: '',
-    });
+    setFormData(INITIAL_FORM);
     onClose();
   };
 
@@ -167,6 +163,42 @@ export const ApplicationModal: React.FC<ApplicationModalProps> = ({ isOpen, onCl
                 <input type="url" placeholder="https://linkedin.com/company/yourcompany" value={formData.companyLinkedin} onChange={(e) => update('companyLinkedin', e.target.value)} className="w-full px-3 py-2.5 bg-white border border-[#0c0e12]/25 text-sm focus:border-[#00d2ff] focus:outline-none rounded-none" />
               </div>
             </div>
+
+            <div className="space-y-1">
+              <label className="text-[10px] font-bold tracking-[0.12em] uppercase text-[#0c0e12] block">FOUNDER BIO *</label>
+              <textarea required rows={3} placeholder="Background, previous companies, and why you are the person to build this." value={formData.founderBio} onChange={(e) => update('founderBio', e.target.value)} className="w-full px-3 py-2 bg-white border border-[#0c0e12]/25 text-sm focus:border-[#00d2ff] focus:outline-none rounded-none" />
+            </div>
+
+            <div className="space-y-1">
+              <label className="text-[10px] font-bold tracking-[0.12em] uppercase text-[#0c0e12] block">CO-FOUNDERS? *</label>
+              <select required value={formData.hasCofounders} onChange={(e) => update('hasCofounders', e.target.value)} className="w-full px-3 py-2.5 bg-white border border-[#0c0e12]/25 text-sm focus:border-[#00d2ff] focus:outline-none rounded-none">
+                <option value="No">No</option>
+                <option value="Yes">Yes</option>
+              </select>
+            </div>
+
+            {formData.hasCofounders === 'Yes' && (
+              <div className="space-y-4 border border-[#0c0e12]/15 bg-white p-4">
+                <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                  <div className="space-y-1">
+                    <label className="text-[10px] font-bold tracking-[0.12em] uppercase text-[#0c0e12] block">CO-FOUNDER NAME *</label>
+                    <input type="text" required placeholder="Full Name" value={formData.cofounderName} onChange={(e) => update('cofounderName', e.target.value)} className="w-full px-3 py-2.5 bg-white border border-[#0c0e12]/25 text-sm focus:border-[#00d2ff] focus:outline-none rounded-none" />
+                  </div>
+                  <div className="space-y-1">
+                    <label className="text-[10px] font-bold tracking-[0.12em] uppercase text-[#0c0e12] block">CO-FOUNDER EMAIL *</label>
+                    <input type="email" required placeholder="cofounder@company.com" value={formData.cofounderEmail} onChange={(e) => update('cofounderEmail', e.target.value)} className="w-full px-3 py-2.5 bg-white border border-[#0c0e12]/25 text-sm focus:border-[#00d2ff] focus:outline-none rounded-none" />
+                  </div>
+                </div>
+                <div className="space-y-1">
+                  <label className="text-[10px] font-bold tracking-[0.12em] uppercase text-[#0c0e12] block">CO-FOUNDER LINKEDIN</label>
+                  <input type="url" placeholder="https://linkedin.com/in/cofounder" value={formData.cofounderLinkedin} onChange={(e) => update('cofounderLinkedin', e.target.value)} className="w-full px-3 py-2.5 bg-white border border-[#0c0e12]/25 text-sm focus:border-[#00d2ff] focus:outline-none rounded-none" />
+                </div>
+                <div className="space-y-1">
+                  <label className="text-[10px] font-bold tracking-[0.12em] uppercase text-[#0c0e12] block">CO-FOUNDERS BIO *</label>
+                  <textarea required rows={3} placeholder="Who they are and what they own in the company." value={formData.cofoundersBio} onChange={(e) => update('cofoundersBio', e.target.value)} className="w-full px-3 py-2 bg-white border border-[#0c0e12]/25 text-sm focus:border-[#00d2ff] focus:outline-none rounded-none" />
+                </div>
+              </div>
+            )}
 
             {/* Company details */}
             <div className="grid grid-cols-1 sm:grid-cols-3 gap-4">

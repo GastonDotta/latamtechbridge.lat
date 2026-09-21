@@ -7,6 +7,7 @@ import { FounderInMotion } from './components/FounderInMotion';
 import { IncorporationSection } from './components/IncorporationSection';
 import { SelectivityCohort } from './components/SelectivityCohort';
 import { EcosystemArchitecture } from './components/EcosystemArchitecture';
+import { TeamSection } from './components/TeamSection';
 import { StructuredContinuity } from './components/StructuredContinuity';
 import { CtaSection } from './components/CtaSection';
 import { Footer } from './components/Footer';
@@ -31,6 +32,7 @@ export function App() {
         <IncorporationSection />
         <SelectivityCohort />
         <EcosystemArchitecture />
+        <TeamSection />
         <StructuredContinuity />
         <CtaSection
           onOpenApply={() => setIsApplyModalOpen(true)}

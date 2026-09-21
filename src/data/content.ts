@@ -1,4 +1,4 @@
-import { CohortPillar, RoadmapPhase, EcosystemPartner } from '../types';
+import { CohortPillar, RoadmapPhase, EcosystemPartner, TeamMember, TeamMandate } from '../types';
 
 export const IMAGES = {
   // Plate I: Founder Workspace, Midtown Manhattan view with coffee & table
@@ -86,5 +86,40 @@ export const ECOSYSTEM_PARTNERS: EcosystemPartner[] = [
     name: 'EMBASSY & CONSULATE GENERAL OF URUGUAY IN NEW YORK',
     role: 'SOVEREIGN ALLIANCE',
     description: 'Bilateral trade cooperation, diplomatic connectivity, and sovereign backing ensuring institutional longevity and government-level market access across the Southern Cone.'
+  }
+];
+
+export const TEAM: TeamMember[] = [
+  {
+    number: '01',
+    role: 'ROLE TITLE',
+    name: 'FIRST LAST',
+    location: 'CITY · CITY',
+    description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris.'
+  },
+  {
+    number: '02',
+    role: 'ROLE TITLE',
+    name: 'FIRST LAST',
+    location: 'CITY · CITY',
+    description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Vestibulum tortor quam, feugiat vitae.'
+  }
+];
+
+export const TEAM_MANDATES: TeamMandate[] = [
+  {
+    number: '01',
+    title: 'SELECTION',
+    description: 'Every application is read. Eight companies are admitted. The rest are declined with the same discipline.'
+  },
+  {
+    number: '02',
+    title: 'RESIDENCY',
+    description: 'Daily base at 417 5th Avenue. Introductions are not a mailing list. They are meetings that happen because someone is in Manhattan.'
+  },
+  {
+    number: '03',
+    title: 'CONTINUITY',
+    description: 'The work does not end at JFK. Entity, banking, pilots, and the reason to return every quarter are owned after the flight home.'
   }
 ];
