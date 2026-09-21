@@ -95,7 +95,7 @@ export const TEAM = [
     name: "Gastón Dotta",
     role: "Co-Founder / Uruguay", // O el rol que corresponda
     location: "Montevideo · New York",
-    image: "https://imgur.com/y1WHwAj.png", // Link directo a su foto
+    image: "https://i.imgur.com/y1WHwAj.png", // Link directo a su foto
     linkedin: "https://www.linkedin.com/in/gastondotta/",
   },
   {
@@ -103,7 +103,7 @@ export const TEAM = [
     name: "Nombre del Miembro 2",
     role: "Co-Founder / Argentina",
     location: "Buenos Aires · New York",
-    image: "https://imgur.com/zOnq83z.png", // Link directo a su foto
+    image: "https://i.imgur.com/zOnq83z.png", // Link directo a su foto
     linkedin: "https://www.linkedin.com/in/tomas-esposito/",
   },
 ];
