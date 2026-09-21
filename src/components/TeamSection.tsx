@@ -22,69 +22,68 @@ export const TeamSection: React.FC = () => {
           </p>
         </div>
 
-        <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-16 items-start">
-          
-          {/* Columna Izquierda: Texto + Galería Editorial */}
-          <div className="lg:col-span-5 space-y-8">
+        {/* Texto Introductorio y Corredor */}
+        <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-center border-b border-[#0c0e12]/15 pb-12">
+          <div className="lg:col-span-8">
             <p className="font-serif text-base sm:text-lg text-[#23262b] leading-[1.7]">
               Southern Cone Tech Bridge NYC is run by operators who have built companies in the region and sat in Midtown rooms. The introductions hold because someone is already in New York — and remains accountable after the residency ends.
             </p>
-
-            {/* Módulo de Imágenes Editoriales */}
-            <div className="grid grid-cols-2 gap-4">
-              <div className="group relative aspect-[4/5] bg-[#f4f2ec] border border-[#0c0e12]/15 overflow-hidden">
-                <img
-                  src="https://imgur.com/y1WHwAj.png"
-                  alt="Operating presence 1"
-                  className="w-full h-full object-cover grayscale contrast-105 group-hover:grayscale-0 group-hover:scale-105 transition-all duration-500 ease-out"
-                />
-                <div className="absolute inset-0 border border-black/5 pointer-events-none" />
-              </div>
-
-              <div className="group relative aspect-[4/5] bg-[#f4f2ec] border border-[#0c0e12]/15 overflow-hidden">
-                <img
-                  src="https://imgur.com/zOnq83z.png"
-                  alt="Operating presence 2"
-                  className="w-full h-full object-cover grayscale contrast-105 group-hover:grayscale-0 group-hover:scale-105 transition-all duration-500 ease-out"
-                />
-                <div className="absolute inset-0 border border-black/5 pointer-events-none" />
-              </div>
-            </div>
-
-            <div className="pt-4 border-t border-[#0c0e12]/15">
-              <span className="text-[10px] font-semibold tracking-[0.16em] uppercase text-[#76777b] block mb-1">
-                OPERATING CORRIDOR
-              </span>
-              <p className="text-sm font-semibold tracking-[0.06em] text-[#0c0e12] uppercase">
-                MONTEVIDEO · BUENOS AIRES · SANTIAGO · NEW YORK
-              </p>
-            </div>
           </div>
+          <div className="lg:col-span-4 lg:border-l lg:border-[#0c0e12]/15 lg:pl-8">
+            <span className="text-[10px] font-semibold tracking-[0.16em] uppercase text-[#76777b] block mb-1">
+              OPERATING CORRIDOR
+            </span>
+            <p className="text-sm font-semibold tracking-[0.06em] text-[#0c0e12] uppercase">
+              MONTEVIDEO · BUENOS AIRES · SANTIAGO · NEW YORK
+            </p>
+          </div>
+        </div>
 
-          {/* Columna Derecha: Lista de Miembros */}
-          <div className="lg:col-span-7 divide-y divide-[#0c0e12]/15 border-t border-b border-[#0c0e12]/15">
-            {TEAM.map((member) => (
-              <div key={member.number} className="py-8 first:pt-5 last:pb-5 space-y-4">
-                <div className="flex flex-col sm:flex-row sm:items-start sm:justify-between gap-3">
-                  <div className="space-y-2">
-                    <span className="text-[10px] font-semibold tracking-[0.16em] uppercase text-[#00677f] block">
-                      {member.number} · {member.role}
-                    </span>
-                    <h3 className="text-2xl sm:text-3xl font-semibold tracking-[-0.03em] text-[#0c0e12] uppercase">
-                      {member.name}
-                    </h3>
-                    <p className="text-[11px] font-semibold tracking-[0.14em] uppercase text-[#76777b]">
-                      {member.location}
-                    </p>
-                  </div>
-                  <span className="w-2 h-2 bg-[#00d2ff] shrink-0 mt-2" />
+        {/* Grid de Miembros del Equipo */}
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
+          {TEAM.map((member) => (
+            <div key={member.number} className="flex flex-col space-y-4 group">
+              {/* Foto del Miembro */}
+              <div className="relative aspect-[4/5] bg-[#f4f2ec] border border-[#0c0e12]/15 overflow-hidden">
+                <img
+                  src={member.image || "https://imgur.com/y1WHwAj.png"}
+                  alt={member.name}
+                  className="w-full h-full object-cover grayscale contrast-105 group-hover:grayscale-0 group-hover:scale-105 transition-all duration-500 ease-out"
+                />
+                <div className="absolute inset-0 border border-black/5 pointer-events-none" />
+              </div>
+
+              {/* Información del Miembro (Nombre, Rol, Ubicación y LinkedIn) */}
+              <div className="space-y-2">
+                <div className="flex items-center justify-between">
+                  <span className="text-[10px] font-semibold tracking-[0.16em] uppercase text-[#00677f]">
+                    {member.number} · {member.role}
+                  </span>
+
+                  {/* Logo de LinkedIn con Link Vacío */}
+                  <a
+                    href=""
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="text-[#0c0e12]/60 hover:text-[#00677f] transition-colors p-1"
+                    aria-label={`LinkedIn de ${member.name}`}
+                  >
+                    <svg className="w-5 h-5 fill-current" viewBox="0 0 24 24">
+                      <path d="M19 3a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h14m-.5 15.5v-5.3a3.26 3.26 0 0 0-3.26-3.26c-.85 0-1.84.52-2.28 1.3v-1.11h-2.79v8.37h2.79v-4.93c0-.77.62-1.4 1.39-1.4a1.4 1.4 0 0 1 1.4 1.4v4.93h2.75M6.46 10.9v8.37H9.25V10.9H6.46M7.86 6.64a1.6 1.6 0 1 0 1.6 1.6 1.6 1.6 0 0 0-1.6-1.6Z" />
+                    </svg>
+                  </a>
                 </div>
-                <p className="font-serif text-sm sm:text-base text-[#45474b] leading-[1.7] max-w-xl">
-                  {member.description}
+
+                <h3 className="text-xl sm:text-2xl font-semibold tracking-[-0.03em] text-[#0c0e12] uppercase">
+                  {member.name}
+                </h3>
+
+                <p className="text-[11px] font-semibold tracking-[0.14em] uppercase text-[#76777b]">
+                  {member.location}
                 </p>
               </div>
-            ))}
-          </div>
+            </div>
+          ))}
         </div>
 
         {/* Mandatos */}
